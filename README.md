@@ -16,7 +16,26 @@ Navigate to the folder on your server where you want to run the script.
 4. Run `composer install` to install required dependencies. The mini-app now
    relies on `stevenmaguire/oauth2-microsoft` for OAuth2 support.
 
-5. Open the file config.php and add your MySQL details and OAuth2 credentials.
+5. Create a `.env` file in the project root with the following keys:
+
+   ```
+   MYSQL_HOST=
+   MYSQL_USER=
+   MYSQL_PASS=
+   MYSQL_DB=
+   IMAP_HOST=
+   IMAP_USER=
+   OAUTH_CLIENT_ID=
+   OAUTH_CLIENT_SECRET=
+   OAUTH_TENANT_ID=
+   OAUTH_REFRESH_TOKEN=
+   FILE_STORE=files
+   GRAB_TYPE=fetch
+   ```
+
+   The `.env` file is excluded from version control via `.gitignore`.
+
+6. Open the file config.php if you need to override any defaults.
 
 # Pipe vs Fetch
 You can either pipe an email address to the script to process each email as it arrives, or you can fetch emails one-by-one from a mailbox using a cron job (emails are deleted as they're processed.) We recommend using the fetch method.
