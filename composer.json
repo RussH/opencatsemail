@@ -1,5 +1,6 @@
 {
   "require": {
-    "stevenmaguire/oauth2-microsoft": "^3.1"
+    "stevenmaguire/oauth2-microsoft": "^2.2",
+    "vlucas/phpdotenv": "^5.5"
   }
 }
