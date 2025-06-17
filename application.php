@@ -4,6 +4,7 @@
 require_once("config.php");
 require_once("class.php");
 require_once("mimeDecode.php");
+require_once(__DIR__ . '/vendor/autoload.php');
 
 set_time_limit(600);
 ini_set('max_execution_time',600);
@@ -29,8 +30,22 @@ if ($grab_type == "pipe") {
 
 /* Fetch */
 if ($grab_type == "fetch") {
- 
-  $inbox = @imap_open("{".$imap_host.$imap_flags."}INBOX",$imap_user,$imap_pass);
+
+  // Obtain OAuth2 access token using refresh token
+  $provider = new Stevenmaguire\OAuth2\Client\Provider\Microsoft([
+    'clientId'     => $oauth_client_id,
+    'clientSecret' => $oauth_client_secret,
+    'redirectUri'  => '',
+    'tenant'       => $oauth_tenant,
+  ]);
+
+  $token = $provider->getAccessToken('refresh_token', [
+    'refresh_token' => $oauth_refresh_token,
+  ]);
+
+  $accessToken = $token->getToken();
+
+  $inbox = @imap_open("{".$imap_host.$imap_flags."}INBOX", $imap_user, $accessToken);
  
   if ($inbox) {
     $emails = imap_search($inbox,"ALL");

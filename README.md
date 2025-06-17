@@ -13,7 +13,10 @@ Navigate to the folder on your server where you want to run the script.
 3. In your MySQL database, create the tables "emails" and "files" by importing the file:
 * mysql-structure.sql
 
-4. Open the file config.php and add your MySQL and POP credentials.
+4. Run `composer install` to install required dependencies. The mini-app now
+   relies on `stevenmaguire/oauth2-microsoft` for OAuth2 support.
+
+5. Open the file config.php and add your MySQL details and OAuth2 credentials.
 
 # Pipe vs Fetch
 You can either pipe an email address to the script to process each email as it arrives, or you can fetch emails one-by-one from a mailbox using a cron job (emails are deleted as they're processed.) We recommend using the fetch method.
