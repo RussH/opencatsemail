@@ -5,8 +5,13 @@ $mysql_user = ""; // MySQL username
 $mysql_pass = ""; // MySQL password
 $mysql_db   = ""; // MySQL database name
 
-$imap_host  = "outlook.office365.com:993"; // IMAP host address
-$imap_flags = "/imap/ssl/auth=xoauth2"; // IMAP Flags for OAuth2
+$imap_host  = isset($_ENV['IMAP_HOST']) ? $_ENV['IMAP_HOST'] : 'outlook.office365.com:993'; // IMAP host address
+
+if (strpos($imap_host, ':') === false) {
+    $imap_host .= ':993';
+}
+
+$imap_flags = isset($_ENV['IMAP_FLAGS']) ? $_ENV['IMAP_FLAGS'] : '/imap/ssl/auth=xoauth2'; // IMAP Flags for OAuth2
 $imap_user  = ""; // IMAP username
 
 // OAuth2 settings for Microsoft
