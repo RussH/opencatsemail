@@ -1,5 +1,4 @@
-
-
+This will be a new oauth2 authentication for imap based on th eolder code in this repo, Ill look to rework it to use 'native' opencats activities rather than a custom email table. Will try out Codex and see what it makes of this. 
 # Installing
 Navigate to the folder on your server where you want to run the script.
 
