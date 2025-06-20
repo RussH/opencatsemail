@@ -24,7 +24,7 @@ if ($grab_type == "pipe") {
   }
 
   $uniqid = generateId(20).date("U");
-  $emailMessage = new EmailObject($mysql,$uniqid,$source,$file_store);
+  $emailMessage = new EmailObject($mysql,$uniqid,$source);
   $emailMessage->readEmail();
 }
 
@@ -57,7 +57,7 @@ if ($grab_type == "fetch") {
         foreach($emails AS $n) {
           $source = imap_fetchbody($inbox, $n, "");
           $uniqid = generateId(20).date("U");
-          $emailMessage = new EmailObject($mysql,$uniqid,$source,$file_store);
+          $emailMessage = new EmailObject($mysql,$uniqid,$source);
           $emailMessage->readEmail();
           imap_delete($inbox, $n);
         }
